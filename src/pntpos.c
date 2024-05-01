@@ -515,6 +515,9 @@ static void estvel(const obsd_t *obs, int n, const double *rs, const double *dts
         
         if (norm(dx,4)<1E-6) {
             for (i=0;i<3;i++) sol->rr[i+3]=x[i];
+            sol->qv[3]=(float)Q[1];    /* cov v_xy */
+            sol->qv[4]=(float)Q[2+NX]; /* cov v_yz */
+            sol->qv[5]=(float)Q[2];    /* cov v_zx */
             break;
         }
     }
