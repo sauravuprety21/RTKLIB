@@ -1364,29 +1364,33 @@ extern int outsolheads(unsigned char *buff, const solopt_t *opt)
     
     if (opt->posf==SOLF_LLH) { /* lat/lon/hgt */
         if (opt->degf) {
-            p+=sprintf(p,"%16s%s%16s%s%10s%s%3s%s%3s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%6s%s%6s\n",
+            p+=sprintf(p,"%16s%s%16s%s%10s%s%3s%s%3s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%6s%s%6s\n",
                        "latitude(d'\")",sep,"longitude(d'\")",sep,"height(m)",sep,
                        "Q",sep,"ns",sep,"sdn(m)",sep,"sde(m)",sep,"sdu(m)",sep,
-                       "sdne(m)",sep,"sdeu(m)",sep,"sdue(m)",sep,"age(s)",sep,"ratio");
+                       "sdne(m)",sep,"sdeu(m)",sep,"sdue(m)",sep,"sdvn(m/s)",sep,"sdve(m/s)",sep,"sdvu(m/s)",sep,
+                       "sdvne(m/s)",sep,"sdveu(m/s)",sep,"sdvun(m/s)",sep,"age(s)",sep,"ratio");
         }
         else {
-            p+=sprintf(p,"%14s%s%14s%s%10s%s%3s%s%3s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%6s%s%6s\n",
+            p+=sprintf(p,"%14s%s%14s%s%10s%s%3s%s%3s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%6s%s%6s\n",
                        "latitude(deg)",sep,"longitude(deg)",sep,"height(m)",sep,
                        "Q",sep,"ns",sep,"sdn(m)",sep,"sde(m)",sep,"sdu(m)",sep,
-                       "sdne(m)",sep,"sdeu(m)",sep,"sdun(m)",sep,"age(s)",sep,"ratio");
+                       "sdne(m)",sep,"sdeu(m)",sep,"sdun(m)",sep,"sdvn(m/s)",sep,"sdve(m/s)",sep,"sdvu(m/s)",sep,
+                       "sdvne(m/s)",sep,"sdveu(m/s)",sep,"sdvun(m/s)",sep,"age(s)",sep,"ratio");
         }
     }
     else if (opt->posf==SOLF_XYZ) { /* x/y/z-ecef */
-        p+=sprintf(p,"%14s%s%14s%s%14s%s%3s%s%3s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%6s%s%6s\n",
+        p+=sprintf(p,"%14s%s%14s%s%10s%s%3s%s%3s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%6s%s%6s\n",
                    "x-ecef(m)",sep,"y-ecef(m)",sep,"z-ecef(m)",sep,"Q",sep,"ns",sep,
                    "sdx(m)",sep,"sdy(m)",sep,"sdz(m)",sep,"sdxy(m)",sep,
-                   "sdyz(m)",sep,"sdzx(m)",sep,"age(s)",sep,"ratio");
+                   "sdyz(m)",sep,"sdzx(m)",sep,"sdvx(m/s)",sep,"sdvy(m/s)",sep,"sdvz(m/s)",sep,"sdvxy(m/s)",sep,
+                   "sdvyz(m/s)",sep,"sdvzx(m/s)",sep,"age(s)",sep,"ratio");
     }
     else if (opt->posf==SOLF_ENU) { /* e/n/u-baseline */
-        p+=sprintf(p,"%14s%s%14s%s%14s%s%3s%s%3s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%6s%s%6s\n",
+        p+=sprintf(p,"%14s%s%14s%s%14s%s%3s%s%3s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%6s%s%6s\n",
                    "e-baseline(m)",sep,"n-baseline(m)",sep,"u-baseline(m)",sep,
                    "Q",sep,"ns",sep,"sde(m)",sep,"sdn(m)",sep,"sdu(m)",sep,
-                   "sden(m)",sep,"sdnu(m)",sep,"sdue(m)",sep,"age(s)",sep,"ratio");
+                   "sden(m)",sep,"sdnu(m)",sep,"sdue(m)",sep,"sdvn(m/s)",sep,"sdve(m/s)",sep,"sdvu(m/s)",sep,
+                       "sdvne(m/s)",sep,"sdveu(m/s)",sep,"sdvun(m/s)",sep,"age(s)",sep,"ratio");
     }
     return p-(char *)buff;
 }
