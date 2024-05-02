@@ -993,6 +993,11 @@ static int outpos(unsigned char *buff, const char *s, const sol_t *sol,
                   const solopt_t *opt)
 {
     double pos[3],dms1[3],dms2[3],P[9],Q[9];
+    
+    double vel[3];                          /* velocity (m/s) {e,n,u}*/
+    double Pv[9];                           /* velocity variance/covariance (m/s)^2 {c_xx,c_yy,c_zz,c_xy,c_yz,c_zx}*/
+    double Qv[9];                           /* velocity variance/covariance (m/s)^2 {c_ee,c_nn,c_uu,c_en,c_nu,c_ue}*/
+
     const char *sep=opt2sep(opt);
     char *p=(char *)buff;
     
@@ -1001,6 +1006,11 @@ static int outpos(unsigned char *buff, const char *s, const sol_t *sol,
     ecef2pos(sol->rr,pos);
     soltocov(sol,P);
     covenu(pos,P,Q);
+    
+    ecef2enu(pos, &sol->rr[3], vel);
+    soltovelcov(sol, Pv);
+    covenu(p, Pv, Qv);
+
     if (opt->height==1) { /* geodetic height */
         pos[2]-=geoidh(pos);
     }
