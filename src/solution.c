@@ -1022,10 +1022,12 @@ static int outpos(unsigned char *buff, const char *s, const sol_t *sol,
                    dms2[2]);
     }
     else p+=sprintf(p,"%s%s%14.9f%s%14.9f",s,sep,pos[0]*R2D,sep,pos[1]*R2D);
-    p+=sprintf(p,"%s%10.4f%s%3d%s%3d%s%8.4f%s%8.4f%s%8.4f%s%8.4f%s%8.4f%s%8.4f%s%6.2f%s%6.1f\n",
-               sep,pos[2],sep,sol->stat,sep,sol->ns,sep,SQRT(Q[4]),sep,
+    p+=sprintf(p,"%s%10.4f%s%8.4f%s%8.4f%s%8.4f%s%3d%s%3d%s%8.4f%s%8.4f%s%8.4f%s%8.4f%s%8.4f%s%8.4f%s%8.4f%s%8.4f%s%8.4f%s%8.4f%s%8.4f%s%8.4f%s%6.2f%s%6.1f\n",
+               sep,pos[2],sep,vel[1],sep,vel[0],sep,vel[2],sep,sol->stat,sep,sol->ns,sep,SQRT(Q[4]),sep,
                SQRT(Q[0]),sep,SQRT(Q[8]),sep,sqvar(Q[1]),sep,sqvar(Q[2]),
-               sep,sqvar(Q[5]),sep,sol->age,sep,sol->ratio);
+               sep,sqvar(Q[5]),sep,SQRT(Qv[4]),sep,
+               SQRT(Qv[0]),sep,SQRT(Qv[8]),sep,sqvar(Qv[1]),sep,sqvar(Qv[2]),
+               sep,sqvar(Qv[5]),sep,sol->age,sep,sol->ratio);
     return p-(char *)buff;
 }
 /* output solution as the form of e/n/u-baseline -----------------------------*/
@@ -1394,15 +1396,17 @@ extern int outsolheads(unsigned char *buff, const solopt_t *opt)
     
     if (opt->posf==SOLF_LLH) { /* lat/lon/hgt */
         if (opt->degf) {
-            p+=sprintf(p,"%16s%s%16s%s%10s%s%3s%s%3s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%6s%s%6s\n",
+            p+=sprintf(p,"%16s%s%16s%s%10s%s%8s%s%8s%s%8s%s%3s%s%3s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%6s%s%6s\n",
                        "latitude(d'\")",sep,"longitude(d'\")",sep,"height(m)",sep,
+                       "veln(m/s)",sep,"vele(m/s)",sep,"velu(m/s)",sep,
                        "Q",sep,"ns",sep,"sdn(m)",sep,"sde(m)",sep,"sdu(m)",sep,
                        "sdne(m)",sep,"sdeu(m)",sep,"sdue(m)",sep,"sdvn(m/s)",sep,"sdve(m/s)",sep,"sdvu(m/s)",sep,
                        "sdvne(m/s)",sep,"sdveu(m/s)",sep,"sdvun(m/s)",sep,"age(s)",sep,"ratio");
         }
         else {
-            p+=sprintf(p,"%14s%s%14s%s%10s%s%3s%s%3s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%6s%s%6s\n",
+            p+=sprintf(p,"%14s%s%14s%s%10s%s%8s%s%8s%s%8s%s%3s%s%3s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%8s%s%6s%s%6s\n",
                        "latitude(deg)",sep,"longitude(deg)",sep,"height(m)",sep,
+                       "veln(m/s)",sep,"vele(m/s)",sep,"velu(m/s)",sep,
                        "Q",sep,"ns",sep,"sdn(m)",sep,"sde(m)",sep,"sdu(m)",sep,
                        "sdne(m)",sep,"sdeu(m)",sep,"sdun(m)",sep,"sdvn(m/s)",sep,"sdve(m/s)",sep,"sdvu(m/s)",sep,
                        "sdvne(m/s)",sep,"sdveu(m/s)",sep,"sdvun(m/s)",sep,"age(s)",sep,"ratio");
