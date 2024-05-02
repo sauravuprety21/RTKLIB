@@ -15,7 +15,7 @@
 *           2014/01/27  1.7 fix bug on default output time format
 *-----------------------------------------------------------------------------*/
 #include <stdarg.h>
-#include "rtklib.h"
+#include "../src/rtklib.h"
 
 static const char rcsid[]="$Id: rnx2rtkp.c,v 1.1 2008/07/17 21:55:16 ttaka Exp $";
 

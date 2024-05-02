@@ -1,0 +1,1 @@
+-o output/spp_soln.pos -x 3 /ssd/bag_files/non_ros/2023_12_30-14_09_12/ublox/F9P_raw.obs /ssd/bag_files/non_ros/2023_12_30-14_09_12/base_station/5331K44824202312301400C.23O /ssd/bag_files/non_ros/2023_12_30-14_09_12/ublox/F9P_raw.nav
