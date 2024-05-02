@@ -111,6 +111,16 @@ static void soltocov(const sol_t *sol, double *P)
     P[5]=P[7]=sol->qr[4]; /* yz or nu */
     P[2]=P[6]=sol->qr[5]; /* zx or ue */
 }
+/* solution to velocity covariance ----------------------------------------------------*/
+static void soltovelcov(const sol_t *sol, double *Pv)
+{
+    Pv[0]     =sol->qv[0]; /* xx or ee */
+    Pv[4]     =sol->qv[1]; /* yy or nn */
+    Pv[8]     =sol->qv[2]; /* zz or uu */
+    Pv[1]=Pv[3]=sol->qv[3]; /* xy or en */
+    Pv[5]=Pv[7]=sol->qv[4]; /* yz or nu */
+    Pv[2]=Pv[6]=sol->qv[5]; /* zx or ue */
+}
 /* covariance to solution ----------------------------------------------------*/
 static void covtosol(const double *P, sol_t *sol)
 {
