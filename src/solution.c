@@ -131,6 +131,16 @@ static void covtosol(const double *P, sol_t *sol)
     sol->qr[4]=(float)P[5]; /* yz or nu */
     sol->qr[5]=(float)P[2]; /* zx or ue */
 }
+/* covariance to solution ----------------------------------------------------*/
+static void velcovtosol(const double *Pv, sol_t *sol)
+{
+    sol->qv[0]=(float)Pv[0]; /* xx or ee */
+    sol->qv[1]=(float)Pv[4]; /* yy or nn */
+    sol->qv[2]=(float)Pv[8]; /* zz or uu */
+    sol->qv[3]=(float)Pv[1]; /* xy or en */
+    sol->qv[4]=(float)Pv[5]; /* yz or nu */
+    sol->qv[5]=(float)Pv[2]; /* zx or ue */
+}
 /* decode nmea gprmc: recommended minumum data for gps -----------------------*/
 static int decode_nmearmc(char **val, int n, sol_t *sol)
 {
